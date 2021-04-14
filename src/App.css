@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+}
+
+
+.active_class{
+  border-bottom: 2px solid red;
+  background-color: rgb(3, 16, 73);
+}
+.nav:hover{
+  border-bottom: 2px solid red;
+  background-color: darkgray;
+
+}
+.bar {
+  background-color : blue;
+  height :55px;
+  display :flex;
+  font-size : 30px;
+  position: fixed;
+  width : 100%;
+  top : 0px;
+  z-index: 100;
+
+}
