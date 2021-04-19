@@ -41,7 +41,7 @@ const login = (temail,tpassword ) => {
   }
   console.log(sdata)
   axios.post('http://localhost:9000/users/',sdata).then(res => {
-    props.getname(res.data)
+    props.settoken(res.data.token)
     history.push('/student')
   })
 

@@ -12,16 +12,9 @@ export default class Edit extends React.Component {
       }
       onSelect(event) {
         const selectedIndex = event.target.options.selectedIndex;
-            console.log(event.target.options[selectedIndex].getAttribute('id'));
-           console.log(this.newDate)
             this.universityId = event.target.options[selectedIndex].getAttribute('id')
-
-      }
-       
-        newDate =  String(new Date(this.props.rowdata.DOB).getFullYear()+ "-" + (new Date(this.props.rowdata.DOB).getMonth() + 1) + "-" + new Date(this.props.rowdata.DOB).getDate()) 
-       
-       
-     
+      }      
+        
     render() {
         return (
             
@@ -43,7 +36,7 @@ export default class Edit extends React.Component {
                         <label style = {{marginLeft : '11%'}} className='warning' id='email_error1'></label><br></br>
                         
                          <label style = {{marginLeft : '11%'}}>DOB :</label><br></br>
-                        <input data-testid = "input3" type="date" ref={(DOB) => this.DOB = DOB} style = {{marginLeft : '11%' ,width : '76%'}} defaultValue ={this.newDate} required /><br></br>
+                        <input data-testid = "input3" type="date" ref={(DOB) => this.DOB = DOB} style = {{marginLeft : '11%' ,width : '76%'}} defaultValue ={this.props.rowdata.DOB} required /><br></br>
                         <br></br> 
                         <label style = {{marginLeft : '11%' }} className='warning' id='DOB_error'></label><br></br>
                          <label style = {{marginLeft : '11%' }}>University Name :</label><br></br>
@@ -53,32 +46,20 @@ export default class Edit extends React.Component {
                              { this.props.list.map((option) => (
                                
                                  <option style={{ width: '76%',height : 25 }}  value={option.name} key ={option.id} id ={option.id}>{option.name}</option>
-                               
-                                 
-                                 
+                                                             
                                  ))}
 
-
-                            </select>
-                         
+                            </select>                         
                          <br></br>
                          <br></br>
-
                          <div className = 'd-flex justify-content-center' >
                          <input type="submit" data-testid = "editmodal-students" style={{width : 90, height :35, fontSize : 13, color : 'white'}} id="addNew" onClick = {() =>{ this.props.state() ; return this.props.click(this.props.index, this.props.rowdata.id, this.name.value,this.email.value,this.DOB.value,this.university.value,this.universityId)}} className="btn btn-success" value="Edit" /><label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
-
-
                          <span data-testid = "closemodal-students" onClick={this.props.state}><label></label><button style={{width : 90, height : 35, fontSize : 13, color : 'white'}} className="btn btn-warning">Close</button></span>
-                         </div>
-                      
+                         </div>                      
                     </form>
                 </div>
             </>
 
         );
     }
-
 }
-
-
-

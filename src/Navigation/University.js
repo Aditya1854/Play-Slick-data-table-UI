@@ -3,6 +3,7 @@ import axios from 'axios';
 import UniversityTable from './UniversityTable'
 import Add from '../modal/AddUniversity';
 import Edit from '../modal/EditUniversity';
+import Cookies from 'js-cookie';
 import Delete from '../modal/DeleteUniversity'
 import Success from '../modal/Success';
 
@@ -21,7 +22,10 @@ export default class University extends Component{
      }
      //create axios 
      api = axios.create({
-         baseURL : 'http://localhost:9000/university'
+         baseURL : 'http://localhost:9000/university',
+         headers : {
+             Authorization : `Bearer ${Cookies.get('token')}`
+         }
      })
 
      // adding data

@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import axios from 'axios';
 import Add from '../modal/Add';
+import Cookies from 'js-cookie';
 import Edit from '../modal/Edit';
 import Delete from '../modal/Delete';
 import Success from '../modal/Success';
@@ -23,10 +24,16 @@ class Home extends React.Component {
     }
     //create axios 
     api = axios.create({
-        baseURL : 'http://localhost:9000/student'
+        baseURL : 'http://localhost:9000/student',
+        headers : {
+            Authorization : `Bearer ${Cookies.get('token')}`
+        }
     })
     api1 = axios.create({
-        baseURL : 'http://localhost:9000/university'
+        baseURL : 'http://localhost:9000/university',
+        headers : {
+            Authorization : `Bearer ${Cookies.get('token')}`
+        }
     })
 
    // adding data
@@ -39,7 +46,7 @@ class Home extends React.Component {
             universityId : parseInt(tuniversityId)
         }
         
-        axios.post('http://localhost:9000/student/',sdata).then(res =>{    
+        this.api.post('/',sdata).then(res =>{    
         if(res.data > 0)  {
                 sdata ={
                     id :res.data,
@@ -60,6 +67,7 @@ class Home extends React.Component {
     }
 // editing data
 editing = (index,tid,tname,temail,tDOB,tuniversity,tuniversityId) =>{
+    console.log("hmm : "+tDOB)
     let sdata ={
         id :tid,
         name: tname,
@@ -111,6 +119,11 @@ deleting = (index,tid) =>{
         
        let output = ''
        this.api.get('/university').then(res => {
+           let ConvertedDate = res.data.map((element) => String(new Date(element.DOB).getFullYear())+ "-" + String(new Date(element.DOB).getMonth() + 1).padStart(2,'0') + "-" + String(new Date(element.DOB).getDate()).padStart(2,'0') )
+           for(let i = 0; i < res.data.length; i++)
+           {
+               res.data[i].DOB = ConvertedDate[i]
+           }
            output = res.data;
         this.setState({
             student : [...output]
@@ -151,7 +164,6 @@ deltrue =(data) =>{
     this.id = data.tableData.id;
     
 }
-
     render() {
         return (
             <div className="MainDiv" style ={{fontSize :13}}>
