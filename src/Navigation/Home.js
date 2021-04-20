@@ -76,7 +76,7 @@ editing = (index,tid,tname,temail,tDOB,tuniversity,tuniversityId) =>{
         universityId : parseInt(tuniversityId)
     }   
     this.api.put('/',sdata).then(res =>{    
-        console.log(res.data)
+        console.log("hello"+res.data)
         if(res.data === 1)
         {
             sdata ={
@@ -118,7 +118,7 @@ deleting = (index,tid) =>{
     componentDidMount() {
         
        let output = ''
-       this.api.get('/university').then(res => {
+       this.api.get('/creator').then(res => {
            let ConvertedDate = res.data.map((element) => String(new Date(element.DOB).getFullYear())+ "-" + String(new Date(element.DOB).getMonth() + 1).padStart(2,'0') + "-" + String(new Date(element.DOB).getDate()).padStart(2,'0') )
            for(let i = 0; i < res.data.length; i++)
            {

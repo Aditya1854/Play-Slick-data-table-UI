@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import Delete from '../modal/DeleteUniversity'
 import Success from '../modal/Success';
 
+
 export default class University extends Component{
       //for storing clicked row data and it's id
       rowdata = null;
@@ -84,7 +85,7 @@ deleting = (index,tid) =>{
      componentDidMount() {
          
         let output = ''
-        this.api.get('/').then(res => {
+        this.api.get('/creator').then(res => {
             output = res.data;
             console.log(res.data)
          this.setState({

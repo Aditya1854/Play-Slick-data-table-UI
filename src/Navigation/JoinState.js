@@ -8,6 +8,7 @@ import Delete from '../modal/Delete';
 import Success from '../modal/Success';
 import JoinTable from './JoinTable'
 
+
 class JoinState extends React.Component {
     //for storing clicked row data and it's id
     rowdata = null;
@@ -95,7 +96,7 @@ deleting = (index,tid) =>{
    componentDidMount() {
        
       let output = ''
-      this.api.get('/university').then(res => {
+      this.api.get('/creator').then(res => {
         let ConvertedDate = res.data.map((element) => String(new Date(element.DOB).getFullYear())+ "-" + String(new Date(element.DOB).getMonth() + 1).padStart(2,'0') + "-" + String(new Date(element.DOB).getDate()).padStart(2,'0') )
         for(let i = 0; i < res.data.length; i++)
         {
